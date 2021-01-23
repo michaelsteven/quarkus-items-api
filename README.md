@@ -4,6 +4,23 @@ This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
 
+## Purpose
+
+The purpose of the quarkus-items-api project is to provide an archetype for how to make a quarkus CRUD application that mimics the springboot-items-api project that is in an adjacent repository.
+
+## Limitations / Problems
+
+- written as an imperative application using resteasy as opposed to using the reactive libraries
+- demonstrates the use of spring data instead of panache libraries
+- localization currently only working with javax validation messages, localization of other strings, currency, and times need work
+- issue with openapi in showing the pageable as a sample needs to be fixed
+- need to find out how to properly use filters for logging since AOP for cross-cutting concerns doesn't seem to work.
+
+## Advantages
+- successfully compiles as a native binary
+- uses the spring data pageable interface for retrieving a collection of data
+- uses javax validation and successfully throws constraint violation exceptions when ran as a native executable
+
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
