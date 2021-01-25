@@ -15,11 +15,14 @@ The purpose of the quarkus-items-api project is to provide an archetype for how 
 - localization currently only working with javax validation messages, localization of other strings, currency, and times need work
 - issue with openapi in showing the pageable as a sample needs to be fixed
 - need to find out how to properly use filters for logging since AOP for cross-cutting concerns doesn't seem to work.
+- can't use junit5 nested classes - https://github.com/quarkusio/quarkus/issues/4393
+- need to add unit/functional tests
 
 ## Advantages
-- successfully compiles as a native binary
+- successfully compiles as a native binary; uses @RegisterForReflection for DTOs and reflection-config.json entries for third party model objects
 - uses the spring data pageable interface for retrieving a collection of data
 - uses javax validation and successfully throws constraint violation exceptions when ran as a native executable
+- all the size and memory advantages outlined at quarkus.io
 
 ## Running the application in dev mode
 
@@ -65,3 +68,7 @@ If you want to learn more about building native executables, please consult http
 <p>A Hello World RESTEasy resource</p>
 
 Guide: https://quarkus.io/guides/rest-json
+
+# Swagger-UI
+
+https://localhost:8080/swagger-ui/
