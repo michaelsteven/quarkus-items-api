@@ -29,6 +29,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -54,7 +55,7 @@ public class ItemsResource {
 	
 	/** The items service. */
 	@Inject
-	private ItemsService itemsService;
+	ItemsService itemsService;
 	
 	/** The message source. */
 	//private MessageSource messageSource;
@@ -68,7 +69,7 @@ public class ItemsResource {
      */
     @Operation(summary = "Retrieve items", description = "Use this API to retrieve a paginated collection of items.")
     @APIResponses(value = {
-            @APIResponse(responseCode = "200", description = "Ok", content = @Content(schema = @Schema(implementation = Page.class))),
+            @APIResponse(responseCode = "200", description = "Ok", content = @Content(schema = @Schema(implementation = PageImpl.class))),
             @APIResponse(responseCode = "400", description = "Invalid input", content = @Content(schema = @Schema(implementation = ApiError.class))),
             @APIResponse(responseCode = "503", description = "Service unavailable", content = @Content(schema = @Schema(implementation = ApiError.class))) })
     @SecurityRequirement(name = "jwt", scopes = {})

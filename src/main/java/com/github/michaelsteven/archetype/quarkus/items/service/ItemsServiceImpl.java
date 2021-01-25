@@ -35,7 +35,7 @@ public class ItemsServiceImpl implements ItemsService {
 	public static final Logger logger = LoggerFactory.getLogger(ItemsServiceImpl.class);
 	
 	@Inject
-	private ItemRepository itemRepository;
+	ItemRepository itemRepository;
 	
 	private MessageSource messageSource;
 	

@@ -27,15 +27,6 @@
     "allPublicFields" : true
   },
   {
-    "name" : "com.github.michaelsteven.archetype.quarkus.items.model.ItemDto",
-    "allDeclaredConstructors" : true,
-    "allPublicConstructors" : true,
-    "allDeclaredMethods" : true,
-    "allPublicMethods" : true,
-    "allDeclaredFields" : true,
-    "allPublicFields" : true
-  },
-  {
     "name" : "org.hibernate.validator.internal.constraintvalidators.bv.time.future.FutureValidatorForReadablePartial",
     "allDeclaredConstructors" : true,
     "allPublicConstructors" : true,
