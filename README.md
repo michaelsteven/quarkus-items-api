@@ -11,10 +11,9 @@ The purpose of the quarkus-items-api project is to provide an archetype for how 
 ## Limitations / Problems
 
 - written as an imperative application using resteasy as opposed to using the reactive libraries
-- demonstrates the use of spring data instead of panache libraries
+- demonstrates the use of spring data instead of quarkus hibernate/panache libraries
 - localization currently only working with javax validation messages, localization of other strings, currency, and times need work
 - issue with openapi in showing the pageable as a sample needs to be fixed
-- need to find out how to properly use filters for logging since AOP for cross-cutting concerns doesn't seem to work.
 - can't use junit5 nested classes - https://github.com/quarkusio/quarkus/issues/4393
 - need to add unit/functional tests
 
@@ -23,6 +22,7 @@ The purpose of the quarkus-items-api project is to provide an archetype for how 
 - uses the spring data pageable interface for retrieving a collection of data
 - uses javax validation and successfully throws constraint violation exceptions when ran as a native executable
 - all the size and memory advantages outlined at quarkus.io
+- Implements CDI for dependency injection out of the box [(with some limitations)](https://quarkus.io/guides/cdi-reference#limitations) to include JSR-299 interceptors for AOP.  There are some limitations to the current CDI implementation ()
 
 ## Running the application in dev mode
 

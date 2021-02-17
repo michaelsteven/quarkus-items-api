@@ -18,6 +18,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.github.michaelsteven.archetype.quarkus.items.interceptor.TraceLog;
 import com.github.michaelsteven.archetype.quarkus.items.model.ConfirmationDto;
 import com.github.michaelsteven.archetype.quarkus.items.model.ItemDto;
 import com.github.michaelsteven.archetype.quarkus.items.model.ItemEntity;
@@ -29,6 +30,7 @@ import com.github.michaelsteven.archetype.quarkus.items.repository.ItemRepositor
 /**
  * The Class ItemsServiceImpl.
  */
+@TraceLog
 @ApplicationScoped
 public class ItemsServiceImpl implements ItemsService {
 		

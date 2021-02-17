@@ -34,6 +34,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import com.github.michaelsteven.archetype.quarkus.items.interceptor.TraceLog;
 import com.github.michaelsteven.archetype.quarkus.items.model.ApiError;
 import com.github.michaelsteven.archetype.quarkus.items.model.ConfirmationDto;
 import com.github.michaelsteven.archetype.quarkus.items.model.ItemDto;
@@ -46,6 +47,7 @@ import com.github.michaelsteven.archetype.quarkus.items.service.ItemsService;
 @SecurityScheme(type = SecuritySchemeType.HTTP, scheme = "bearer", bearerFormat = "jwt")
 @Tag(name = "Items", description = "The items api can be used to perform actions on Items")
 @Path("/api/v1/items")
+@TraceLog
 public class ItemsResource {
 	
 	//public ItemsResource(ItemsService itemsService, MessageSource messageSource) {
