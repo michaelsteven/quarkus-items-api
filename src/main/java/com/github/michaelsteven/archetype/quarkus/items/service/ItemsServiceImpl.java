@@ -1,5 +1,6 @@
 package com.github.michaelsteven.archetype.quarkus.items.service;
 
+import java.time.Instant;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Locale;
@@ -82,6 +83,7 @@ public class ItemsServiceImpl implements ItemsService {
 	@Compliance(action = ComplianceAction.create)
 	public ConfirmationDto saveItem(@NotNull @Valid ItemDto itemDto) {
 		ItemEntity itemEntity = convert(itemDto);
+		itemEntity.setCreatedTimestamp(Instant.now());
 		ItemEntity savedEntity = itemRepository.save(itemEntity);
 		return createConfirmationDto(ItemStatus.SUBMITTED, savedEntity);
 	}
@@ -97,18 +99,21 @@ public class ItemsServiceImpl implements ItemsService {
 	@Transactional
 	@Compliance(action = ComplianceAction.update)
 	public ConfirmationDto editItem(@NotNull @Valid ItemDto itemDto) {
-		ItemEntity originalEntity = itemRepository.findById(itemDto.getId())
-				.orElseThrow(() -> new ValidationException(
-						messageSource.getMessage("itemsservice.validationexception.entitynotfoundforid", 
+		return itemRepository.findById(itemDto.getId())
+				.map( entity -> { 
+						applyToEntity(itemDto, entity); // call to void method - original entity modified byref
+						return entity; 
+					})
+				.map( itemRepository::save )
+				.map( savedItem -> createConfirmationDto(ItemStatus.SUBMITTED, savedItem) )
+				.orElseThrow( () -> new ValidationException (
+							messageSource.getMessage("itemsservice.validationexception.entitynotfoundforid", 
 								new Object[] { String.valueOf(itemDto.getId()) },
 								//LocaleContextHolder.getLocale()
 								Locale.US
-								)
+							)
 						)
 					);
-		convert(itemDto, originalEntity);
-		ItemEntity savedItem = itemRepository.save(originalEntity);
-		return createConfirmationDto(ItemStatus.SUBMITTED, savedItem);
 	}
 	
 	
@@ -155,17 +160,17 @@ public class ItemsServiceImpl implements ItemsService {
 	 */
 	private ItemEntity convert(ItemDto sourceDto) {
 		ItemEntity entity = new ItemEntity();
-		convert(sourceDto, entity);
+		applyToEntity(sourceDto, entity);
 		return entity;
 	}
 	
 	/**
-	 * Convert.
+	 * Apply changes to entity.
 	 *
 	 * @param sourceDto the source dto
 	 * @param targetEntity the target entity
 	 */
-	private void convert(@NotNull ItemDto sourceDto, ItemEntity targetEntity) {
+	private void applyToEntity(@NotNull ItemDto sourceDto, ItemEntity targetEntity) {
 		if(null != targetEntity) {
 			targetEntity.setId(sourceDto.getId());
 			targetEntity.setName(sourceDto.getName());
