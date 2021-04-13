@@ -25,6 +25,10 @@ The purpose of the quarkus-items-api project is to provide an archetype for how 
 - Implements CDI for dependency injection out of the box [(with some limitations)](https://quarkus.io/guides/cdi-reference#limitations) to include JSR-299 interceptors for AOP.  There are some limitations to the current CDI implementation ()
 
 ## Running the application in dev mode
+set the following environment variables:
+- QUARKUS_DATASOURCE_JDBC_URL
+- QUARKUS_DATASOURCE_USERNAME
+- QUARKUS_DATASOURCE_PASSWORD
 
 You can run your application in dev mode that enables live coding using:
 ```shell script
