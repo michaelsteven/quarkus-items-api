@@ -6,7 +6,7 @@ If you want to learn more about Quarkus, please visit its website: https://quark
 
 ## Purpose
 
-The purpose of the quarkus-items-api project is to provide an archetype for how to make a quarkus CRUD application that mimics the springboot-items-api project that is in an adjacent repository.
+The purpose of the quarkus-items-api project is to provide an archetype for how to make a quarkus CRUD application that mimics the springboot-items-api project that is in an adjacent repository.  This version is configured to work with DB2 as the database.
 
 ## Limitations / Problems
 
